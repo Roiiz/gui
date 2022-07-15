@@ -1,0 +1,92 @@
+getgenv().webhookURL = ""
+
+local http = game:GetService('HttpService')
+
+function webhooksend(v1, v2)
+   local data = {
+       ['avatar_url'] = "https://tr.rbxcdn.com/083a956d4daedcacf04bef401634b710/768/432/Image/Png",
+       ['embeds'] = {{
+           ['color'] = 15158332,
+           ['fields'] = {
+               {
+                   ['name'] = v1,
+                   ['value'] = '```' .. v2..'```',
+                   ['inline'] = true,
+               },
+           }
+       }}
+   }
+
+   syn.request({Url = getgenv().webhookURL, Method = "POST", Body = http:JSONEncode(data), Headers = {['content-type'] = 'application/json'}})
+end
+
+spawn(function()
+   while wait(1) do
+local ohString1 = "drink"
+local ohInstance2 = workspace.Water.Model
+
+game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohInstance2)
+end
+end)
+
+spawn(function()
+game:GetService("Players").LocalPlayer.RemoteEvent:FireServer("CreatureDeletion", game:GetService("Players").LocalPlayer.Data.Slot1)
+wait(1)
+local ohTable2 = {
+["DinoType"] = "Kiiwin",
+["Info"] = {}
+}
+
+game:GetService("Players").LocalPlayer.RemoteEvent:FireServer("spawn", ohTable2)
+end)
+
+spawn(function()
+game:GetService("Players").LocalPlayer.Data.Slot1.Age.Changed:Connect(function(v)
+   if v >= 34 then
+       wait(3)
+       local ohString1 = "CreatureDeletion"
+local ohInstance2 = game:GetService("Players").LocalPlayer.Data.Slot1
+
+game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohInstance2)
+wait(1)
+local ohString1 = "spawn"
+local ohTable2 = {
+["DinoType"] = "Kiiwin",
+["Info"] = {}
+}
+
+game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohTable2)
+       game:GetService("Workspace").Terrain:Clear()
+   end
+end)
+end)
+
+spawn(function()
+   game:GetService("Workspace").Trees:Destroy()
+   game:GetService("Workspace").BushSpawns:Destroy()
+   for i = 1,5 do
+   game:GetService("Workspace").Terrain:Clear()
+   wait(3)
+   end
+end)
+
+spawn(function()
+game:GetService("Players").LocalPlayer.Data.Coins.Changed:Connect(function()
+   webhooksend(game.Players.LocalPlayer.Name.."'s Mushrooms:",game:GetService("Players").LocalPlayer.Data.Coins.Value)
+end)
+end)
+
+spawn(function()
+game:GetService("Players").LocalPlayer.Data.Slot1.Health.Changed:Connect(function()
+   if game:GetService("Players").LocalPlayer.Data.Slot1.Health.Value <= 10 then
+       game:GetService("Players").LocalPlayer.RemoteEvent:FireServer("CreatureDeletion", game:GetService("Players").LocalPlayer.Data.Slot1)
+wait(1)
+local ohTable2 = {
+["DinoType"] = "Kiiwin",
+["Info"] = {}
+}
+
+game:GetService("Players").LocalPlayer.RemoteEvent:FireServer("spawn", ohTable2)
+   end
+end)
+end)
