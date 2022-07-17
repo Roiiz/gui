@@ -1,10 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roiiz/gui/main/da"))()
 
-local CFrame = CFrame.new(120091, 213.45082092285, 898.25079345703)
-local motion
-local getupvs = debug.getupvalues or getupvalues or getupvals
-local getlm = getloadedmodules or get_loaded_modules
-
 local UpdateShelter = "UpdateShelter"
 local Total = "Total"
 local args = {
@@ -16,18 +11,32 @@ local Main = Window:NewTab("Player")
 local Player = Main:NewSection("Dinosaur")
 
 local P = Player:NewButton("Instant Menu", "", function()
-    for i, v in pairs(getlm()) do
+    local args = {
+        [1] = "Grab",
+        [2] = {}
+     }
+     
+     game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
+     
+     wait(0.5)
+     
+     local CFrame = CFrame.new(120091, 213.45082092285, 898.25079345703)
+     
+     local motion
+     
+     for i, v in pairs(getloadedmodules()) do
         if v.Name == "MotionTracker" then
             motion = v
         end
-        end
-        for i2, v2 in pairs(getupvs(require(motion))) do
+     end
+     
+     for i2, v2 in pairs(debug.getupvalues(require(motion))) do
         if type(v2) == "function" then
             if getinfo(v2).name == "TeleportTo" then
                 setupvalue(v2, 3, CFrame)
             end
         end
-    end
+     end
 end)
 
 local P = Player:NewToggle("Auto Drink", "", function(state)
