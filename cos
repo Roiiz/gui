@@ -15,7 +15,7 @@ local Window = Library.CreateLib("", "DarkTheme")
 local Main = Window:NewTab("Player")
 local Player = Main:NewSection("Dinosaur")
 
-local P1 = Player:NewButton("Instant Menu", "", function()
+local P = Player:NewButton("Instant Menu", "", function()
     for i, v in pairs(getlm()) do
         if v.Name == "MotionTracker" then
             motion = v
@@ -30,14 +30,14 @@ local P1 = Player:NewButton("Instant Menu", "", function()
     end
 end)
 
-local P2 = Player:NewToggle("Auto Drink", "", function(state)
+local P = Player:NewToggle("Auto Drink", "", function(state)
     getgenv().autoDrink = state
                 if state then
                 drink()
     end
 end)
 
-local P2 = Player:NewToggle("Auto Shelter", "", function(state)
+local P = Player:NewToggle("Auto Shelter", "", function(state)
     getgenv().autoShelter = state
                 if state then
                 shelter()
@@ -46,19 +46,29 @@ end)
 
 
 
-Player:NewLabel("Farm")
+Player:NewLabel("Misc")
 
 getgenv().autoShelter = true
 getgenv().autoDrink = true
 
-local P4 = Player:NewButton("AFK Mushroom Farm (DO NOT PRESS!!!)>>>>", "1st Slot Empty + Kiiwin Needed", function()
+
+local P = Player:NewButton("Load Players", "", function()
+
+    local infRendDistance = Instance.new("BoolValue")
+    infRendDistance.Name = "IgnoreDistanceLimits"
+    infRendDistance.Value = true
+    infRendDistance.Parent = game:GetService("Players").LocalPlayer.Character
+
+end)
+    
+local P = Player:NewButton("AFK Mushroom Farm (DO NOT PRESS!!!)>>>>", "1st Slot Empty + Kiiwin Needed", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Roiiz/gui/main/farm'))()
 
 end)
 
 Player:NewLabel("Others")
 
-local P3 = Player:NewButton("V.G Hub", "Infinite Stamina + Auto Food", function()
+local P = Player:NewButton("V.G Hub", "Infinite Stamina + Auto Food", function()
             loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
 
 end)
@@ -88,5 +98,4 @@ end
 Player:NewKeybind("Tab to Hide UI", "", Enum.KeyCode.Tab, function()
 	Library:ToggleUI()
 end)
-
 
