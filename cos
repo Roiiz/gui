@@ -7,10 +7,10 @@ local args = {
     [2] = workspace.Water.Model}
 
 local Window = Library.CreateLib("", "DarkTheme")
-local Main = Window:NewTab("Player")
-local Player = Main:NewSection("Dinosaur")
+local Main = Window:NewTab("Sonaria")
+local Player = Main:NewSection("Player")
 
-local P = Player:NewButton("Instant Menu", "", function()
+local P = Player:NewButton("Menu", "", function()
     local args = {
         [1] = "Grab",
         [2] = {}
@@ -39,14 +39,14 @@ local P = Player:NewButton("Instant Menu", "", function()
      end
 end)
 
-local P = Player:NewToggle("Auto Drink", "", function(state)
+local P = Player:NewToggle("Água", "", function(state)
     getgenv().autoDrink = state
                 if state then
                 drink()
     end
 end)
 
-local P = Player:NewToggle("Auto Shelter", "", function(state)
+local P = Player:NewToggle("Anti Clima", "", function(state)
     getgenv().autoShelter = state
                 if state then
                 shelter()
@@ -55,13 +55,22 @@ end)
 
 
 
-Player:NewLabel("Misc")
+Player:NewLabel("Funções")
 
 getgenv().autoShelter = true
 getgenv().autoDrink = true
 
 
-local P = Player:NewButton("Load Players", "", function()
+local P = Player:NewButton("Criar Pack", "", function()
+            local ohString1 = "CreatePack"
+            local ohString2 = "Ander"
+            game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohString2)
+            local ohString1 = "Invite"
+            local ohInstance2 = game:GetService("Players").Unkso.Paradoxo
+            game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohInstance2)
+end)
+
+local P = Player:NewButton("Carregar Players", "", function()
 
     local infRendDistance = Instance.new("BoolValue")
     infRendDistance.Name = "IgnoreDistanceLimits"
@@ -70,14 +79,14 @@ local P = Player:NewButton("Load Players", "", function()
 
 end)
     
-local P = Player:NewButton("AFK Mushroom Farm (DO NOT PRESS!!!)>>>>", "1st Slot Empty + Kiiwin Needed", function()
+local P = Player:NewButton("Mushroom Farm", "1 Slot Vazio + Kiwiin", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Roiiz/gui/main/farm'))()
 
 end)
 
-Player:NewLabel("Others")
+Player:NewLabel("Outros")
 
-local P = Player:NewButton("V.G Hub", "Infinite Stamina + Auto Food", function()
+local P = Player:NewButton("Hub", "", function()
             loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
 
 end)
@@ -104,7 +113,6 @@ function drink()
     end)
 end
 
-Player:NewKeybind("Tab to Hide UI", "", Enum.KeyCode.Tab, function()
+Player:NewKeybind("Mostrar/Esconder UI", "", Enum.KeyCode.Tab, function()
 	Library:ToggleUI()
 end)
-
