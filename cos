@@ -87,7 +87,7 @@ local P = Player:NewButton("Criar Pack", "", function()
             local ohString2 = "Ander"
             game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohString2)
             local ohString1 = "Invite"
-            local ohInstance2 = game:GetService("Players").Unkso.Paradoxo
+            local ohInstance2 = game:GetService("Players")["Parado_xo"]["Unkso"]
             game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohInstance2)
 end)
 
