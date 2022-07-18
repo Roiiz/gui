@@ -112,7 +112,9 @@ local P = Player:NewButton("ESP Customizavel", "", function()
 
 end)
 
-
+local P = Player:NewKeybind("Escolher Botão UI", "", Enum.KeyCode.Tab, function()
+	Library:ToggleUI()
+end)
 
 
 
@@ -140,21 +142,12 @@ function stamina()
     spawn(function()
             while wait() do
                 if not getgenv().autoStamina then break end
-                    for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
-                        if v.Name == "Stamina" then
-                        v.Value = 100000
-                    end
-                    end
-                    for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
-                        if v.Name == "StaminaRegen" then
-                        v.Value = 100000
-                    end
-                    end 
-                   
+                for i,v in pairs(game:GetService("Players").LocalPlayer:GetChildren()) do
+                    if v.Name == "Stamina" then
+                    v.Value = 100
+                 end
+                 end
             end
     end)
 end
 
-Player:NewKeybind("Escolher Botão UI", "", Enum.KeyCode.Tab, function()
-	Library:ToggleUI()
-end)
