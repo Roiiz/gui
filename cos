@@ -107,7 +107,10 @@ end)
 
 Player:NewLabel("Outros")
 
+local P = Player:NewButton("ESP Customizavel", "", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua',true))()
 
+end)
 
 
 
@@ -135,34 +138,19 @@ end
 
 function stamina()
     spawn(function()
-            while getgenv().autoStamina do
+            while wait(3) do
+                if not getgenv().autoStamina then break end
                     for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
                         if v.Name == "Stamina" then
-                            wait()
                         v.Value = 100000
                     end
                     end
                     for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
                         if v.Name == "StaminaRegen" then
-                            wait()
                         v.Value = 100000
                     end
                     end 
-                    wait(1)
-                    if not getgenv().autoStamina then
-                        for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
-                            if v.Name == "Stamina" then
-                                wait()
-                            v.Value = 300
-                        end
-                        end
-                        for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
-                            if v.Name == "StaminaRegen" then
-                                wait()
-                            v.Value = 3
-                        end
-                        end
-                    end
+                   
             end
     end)
 end
