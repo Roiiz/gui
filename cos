@@ -121,7 +121,7 @@ end)
 
 function shelter()
     spawn(function()
-            while wait(0) do
+            while wait() do
                 if not getgenv().autoShelter then break end
                     game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(UpdateShelter, Total)      
             end
