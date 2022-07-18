@@ -39,6 +39,19 @@ local P = Player:NewButton("Menu", "", function()
      end
 end)
 
+local P = Player:NewButton("Mostrar Vida", "", function()
+            local CharacterCtr = workspace.Dinosaurs
+            function MakeHPVis(character)
+            local head = character:WaitForChild("Head")
+            local hp = head:WaitForChild("HealthGui")
+            hp.Enabled = true
+end
+CharacterCtr.ChildAdded:Connect(MakeHPVis)
+for _, character in pairs(CharacterCtr:GetChildren()) do
+  MakeHPVis(character)
+end
+end)
+
 local P = Player:NewToggle("Água", "", function(state)
     getgenv().autoDrink = state
                 if state then
