@@ -59,6 +59,13 @@ local P = Player:NewToggle("Água", "", function(state)
     end
 end)
 
+local P = Player:NewToggle("Stamina", "", function(state)
+    getgenv().autoStamina = state
+                if state then
+                stamina()
+    end
+end)
+
 local P = Player:NewToggle("Anti Clima", "", function(state)
     getgenv().autoShelter = state
                 if state then
@@ -72,6 +79,7 @@ Player:NewLabel("Funções")
 
 getgenv().autoShelter = true
 getgenv().autoDrink = true
+getgenv().autoStamina = true
 
 
 local P = Player:NewButton("Criar Pack", "", function()
@@ -99,10 +107,9 @@ end)
 
 Player:NewLabel("Outros")
 
-local P = Player:NewButton("Hub", "", function()
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
 
-end)
+
+
 
 
 
@@ -126,6 +133,40 @@ function drink()
     end)
 end
 
-Player:NewKeybind("Mostrar/Esconder UI", "", Enum.KeyCode.Tab, function()
+function stamina()
+    spawn(function()
+            while getgenv().autoStamina do
+                    for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
+                        if v.Name == "Stamina" then
+                            wait()
+                        v.Value = 100000
+                    end
+                    end
+                    for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
+                        if v.Name == "StaminaRegen" then
+                            wait()
+                        v.Value = 100000
+                    end
+                    end 
+                    wait(1)
+                    if not getgenv().autoStamina then
+                        for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
+                            if v.Name == "Stamina" then
+                                wait()
+                            v.Value = 300
+                        end
+                        end
+                        for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
+                            if v.Name == "StaminaRegen" then
+                                wait()
+                            v.Value = 3
+                        end
+                        end
+                    end
+            end
+    end)
+end
+
+Player:NewKeybind("Escolher Botão UI", "", Enum.KeyCode.Tab, function()
 	Library:ToggleUI()
 end)
