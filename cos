@@ -138,7 +138,7 @@ end
 
 function stamina()
     spawn(function()
-            while wait(3) do
+            while wait() do
                 if not getgenv().autoStamina then break end
                     for i,v in pairs(game:GetService("Workspace").Dinosaurs:GetDescendants()) do
                         if v.Name == "Stamina" then
