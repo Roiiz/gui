@@ -87,7 +87,7 @@ local P = Player:NewButton("Criar Pack", "", function()
             local ohString2 = "Ander"
             game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohString2)
             local ohString1 = "Invite"
-            local ohInstance2 = game:GetService("Players")["Parado_xo"]["Unkso"]
+            local ohInstance2 = game:GetService("Players").Parado_xo.Unkso
             game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohInstance2)
 end)
 
@@ -151,3 +151,41 @@ function stamina()
     end)
 end
 
+
+
+function addui(part)
+local partGui = Instance.new("BillboardGui",part)
+partGui.Size = UDin2.new(1,0,1,0)
+partGui.AlwaysOnTop = true
+partGui.Name = "Item-Esp"
+local frame = Instance.new("Frame", partGui)
+frame.BackgroundColor3 = Color3.fromRGB(255,80,60)
+frame.BackgroundTransparency = 0.75
+frame.Size = UDim2.new(1,0,1,0)
+frame.BorderSizePixel = 0
+local nameGui = Instance.new("BillboardGui", part)
+nameGui.Size = UDim2.new(3,0,1.5,0)
+nameGui.Sizeoffset = Vector2.new(0,1)
+nameGui.AlwaysOnTop = true
+nameGui.Name = "Name"
+local text = Instance.new("TextLabel", nameGui)
+text.Text = part.Parent.DisplayName.Value
+text.TextColor3 = Color3.from RGB(255,80,60)
+text.Text = Transparency-0.25
+text.BackgroundTransparency = 1
+text.TextScaled = true
+text.Size = UDim2.new(1,0,1,0)
+text.Font = Enum.Font.Gothamsemibold
+text.Name = "Text"
+end
+
+local descendants = game.Workspace:GetDescendants()
+
+for _,v in pairs(descendants) do
+    if descendants:IsA("Meat") then
+        addui(v.Meat)
+    end
+end
+game:GetService("Workspace").Food.ChildAdded:Connect(function(v)
+addui(v:WaitForChild("Meat"))
+end)
