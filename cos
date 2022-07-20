@@ -114,7 +114,7 @@ local P = Player:NewButton("ESP Customizavel", "", function()
 
 end)
 
-ocal P = Player:NewButton("Criar ESP", "", function()
+local P = Player:NewButton("Criar ESP", "", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Roiiz/gui/main/a',true))()
 
 end)
