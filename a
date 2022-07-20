@@ -89,7 +89,7 @@ end
 --espChildren("Part", "Gold Rock", "Diamond", 0,100,0)
 --createESP("HumanoidRootPart", "Living", 0,0,200)
 
-local ui = lib:CreateUI("ShiftDireito Pra Fechar", Enum.KeyCode.RightShift)
+local ui = lib:CreateUI("Criador de ESPr", Enum.KeyCode.Tab)
 local cooltab = ui:CreateTab("Itens")
 local etab = ui:CreateTab("Carnes e Plantas")
 local a1,a2,a3,c1,c2,c3
