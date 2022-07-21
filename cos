@@ -559,6 +559,9 @@ Mush:NewButton("AFK Mushroom Farm", "1 Slot Vazio + Kiwiin", function()
 
 end)
 
+Key:NewSlider("Iluminação", "", 10, 0, function(s) 
+    game:GetService("Lighting").Brightness = s
+end)
 
 
 Key:NewKeybind("Escolher Botão UI", "", Enum.KeyCode.Tab, function()
