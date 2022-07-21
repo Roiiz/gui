@@ -563,7 +563,6 @@ Key:NewSlider("Iluminação", "", 10, 0, function(s)
     game:GetService("Lighting").Brightness = s
 end)
 
-
 Key:NewKeybind("Escolher Botão UI", "", Enum.KeyCode.Tab, function()
 	Library:ToggleUI()
 end)
@@ -652,7 +651,7 @@ end
 
 function grab()
     spawn(function()
-                while wait(0.5) do
+                while wait() do
                 if not getgenv().antiGrab then break end
                     local args = {
                         [1] = "Grab",
