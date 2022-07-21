@@ -149,6 +149,15 @@ Player:NewButton("ESP Customizavel", "", function()
 
 end)
 
+Player:NewButton("Aimbot", "", function()
+    -- Please consider using the newer versions of CheatX, this is broken and buggy :(
+if syn then else
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/2dgeneralspam1/lua-releases/main/iris-compat.lua'))()
+    end
+    loadstring(game:HttpGet('https://grfbin.ml/cheatx/old-script.lua'))()
+
+end)
+
 Mapa:NewButton("Planície 1 ", "", function()
     local CFrame = CFrame.new(-37, 208, 966)
     local motion
