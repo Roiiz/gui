@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roiiz/gui/main/da"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roiiz/gui/main/ui"))()
 
 local UpdateShelter = "UpdateShelter"
 local Total = "Total"
@@ -6,16 +6,27 @@ local args = {
     [1] = "drink",
     [2] = workspace.Water.Model}
 
-local Window = Library.CreateLib("", "DarkTheme")
-local Main = Window:NewTab("Sonaria")
-local Player = Main:NewSection("Player")
+local Window = Library.CreateLib("Creatures Of Sonaria Script Feito Pra Giulia", "DarkTheme")
+local Principal = Window:NewTab("Principal")
+local Player = Principal:NewSection("Player")
+local Mapa = Window:NewTab("Mapa")
+local Mapa = Mapa:NewSection("Planícies")
+local Farm = Window:NewTab("Farm/Missões")
+local Mush = Farm:NewSection("Mushroom")
+local Config = Window:NewTab("Configurar")
+local Key = Config:NewSection("Keybinds (Clica pra mudar)")
 
-local P = Player:NewButton("Menu", "", function()
+getgenv().autoShelter = true
+getgenv().autoDrink = true
+getgenv().autoStamina = true
+getgenv().autoPack = true
+getgenv().antiGrab = true
+
+
+Player:NewButton("Menu", "", function()
     local args = {
         [1] = "Grab",
-        [2] = {}
-     }
-     
+        [2] = {}}
      game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
      
      wait(0.5)
@@ -39,7 +50,7 @@ local P = Player:NewButton("Menu", "", function()
      end
 end)
 
-local P = Player:NewButton("Mostrar Vida", "", function()
+Player:NewButton("Mostrar Vida", "", function()
             local CharacterCtr = workspace.Dinosaurs
             function MakeHPVis(character)
             local head = character:WaitForChild("Head")
@@ -52,37 +63,47 @@ for _, character in pairs(CharacterCtr:GetChildren()) do
 end
 end)
 
-local P = Player:NewToggle("Água", "", function(state)
+Player:NewToggle("Água", "", function(state)
     getgenv().autoDrink = state
                 if state then
                 drink()
     end
 end)
 
-local P = Player:NewToggle("Stamina", "", function(state)
+Player:NewToggle("Stamina", "", function(state)
     getgenv().autoStamina = state
                 if state then
                 stamina()
     end
 end)
 
-local P = Player:NewToggle("Anti Clima", "", function(state)
+Player:NewToggle("Anti Clima", "", function(state)
     getgenv().autoShelter = state
                 if state then
                 shelter()
     end
 end)
 
+Player:NewToggle("Anti Grab (Não testei)", "", function(state)
+    getgenv().antiGrab = state
+                if state then
+                grab()
+    end
+end)
+
 
 
 Player:NewLabel("Funções")
+Player:NewToggle("Auto Pack", "Auto aceita pack", function(state)
+    getgenv().autoPack = state
+                if state then
+                pack()
+    end
+end)
 
-getgenv().autoShelter = true
-getgenv().autoDrink = true
-getgenv().autoStamina = true
+Player:NewButton("Criar Pack", "", function()
 
-
-local P = Player:NewButton("Criar Pack", "", function()
+            game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
             local ohString1 = "CreatePack"
             local ohString2 = "Ander"
             game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString1, ohString2)
@@ -95,7 +116,7 @@ local P = Player:NewButton("Criar Pack", "", function()
             game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(ohString2, ohInstance3)
 end)
 
-local P = Player:NewButton("Carregar Players", "", function()
+Player:NewButton("Carregar Players", "Carrega os Players do Server", function()
 
     local infRendDistance = Instance.new("BoolValue")
     infRendDistance.Name = "IgnoreDistanceLimits"
@@ -108,25 +129,461 @@ end)
 
 Player:NewLabel("Outros")
 
+Player:NewToggle("Ativar Tudo", "Ativa Todos os Toggles", function(state)
+    getgenv().autoShelter = state
+    getgenv().autoDrink = state
+    getgenv().autoStamina = state
+    getgenv().autoPack = state
+    getgenv().antiGrab = state
+                if state then
+                shelter()
+                stamina()
+                drink()
+                pack()
+                grab()
+    end
+end)
 
-local P = Player:NewButton("ESP Customizavel", "", function()
+Player:NewButton("ESP Customizavel", "", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua',true))()
 
 end)
 
-local P = Player:NewButton("Criar ESP", "", function()
+Mapa:NewButton("Planície 1 ", "", function()
+    local CFrame = CFrame.new(-37, 208, 966)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+
+end)
+
+Mapa:NewButton("Planície 2 ", "", function()
+    local CFrame = CFrame.new(-691, 214, 1591)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewButton("Planície 3 ", "", function()
+    local CFrame = CFrame.new(624, 191, 1702)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewButton("Planície 4 ", "", function()
+    local CFrame = CFrame.new(-624, 222, 2261)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewLabel("Oasis")
+
+Mapa:NewButton("Oasis 1 ", "", function()
+    local CFrame = CFrame.new(-444, 272, -1579)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewButton("Oasis 2 ", "", function()
+    local CFrame = CFrame.new(-1149, 207, -405)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewButton("Oasis 3 ", "", function()
+    local CFrame = CFrame.new(-441, 227, -808)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewLabel("Floresta")
+
+Mapa:NewButton("Floresta 1 ", "", function()
+    local CFrame = CFrame.new(406, 214, -1117)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewButton("Floresta 2 ", "", function()
+    local CFrame = CFrame.new(1181, 209, -759)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewLabel("Dunas")
+
+Mapa:NewButton("Dunas 1 ", "", function()
+    local CFrame = CFrame.new(-2349, 192, 608)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewLabel("Pântano")
+
+Mapa:NewButton("Pântano 1 ", "", function()
+    local CFrame = CFrame.new(1261, 194, 906)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewButton("Pântano 2 ", "", function()
+    local CFrame = CFrame.new(1688, 245, 333)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewLabel("Caverna")
+
+Mapa:NewButton("Caverna da Flor ", "", function()
+    local CFrame = CFrame.new(-1957, 194, -1007)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewLabel("Vulcão")
+
+Mapa:NewButton("Vulcão 1 ", "", function()
+    local CFrame = CFrame.new(2272, 408, -880)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewButton("Vulcão 2 ", "", function()
+    local CFrame = CFrame.new(2155, 224, -614)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewLabel("Tundra")
+
+Mapa:NewButton("Tundra 1 ", "", function()
+    local CFrame = CFrame.new(-669, 560, -2444)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Mapa:NewButton("Tundra 2 ", "", function()
+    local CFrame = CFrame.new(722, 372, -2111)
+    local motion
+    local getupvs = debug.getupvalues or getupvalues or getupvals
+    local getlm = getloadedmodules or get_loaded_modules
+    
+    for i, v in pairs(getlm()) do
+       if v.Name == "MotionTracker" then
+           motion = v
+       end
+    end
+    
+    for i2, v2 in pairs(getupvs(require(motion))) do
+       if type(v2) == "function" then
+           if getinfo(v2).name == "TeleportTo" then
+               setupvalue(v2, 3, CFrame)
+           end
+       end
+    end
+
+end)
+
+Player:NewButton("Criar ESP", "", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Roiiz/gui/main/a',true))()
 
 end)
 
-local P = Player:NewButton("Mushroom Farm", "1 Slot Vazio + Kiwiin", function()
+
+
+Mush:NewButton("AFK Mushroom Farm", "1 Slot Vazio + Kiwiin", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Roiiz/gui/main/farm'))()
 
 end)
 
-local P = Player:NewKeybind("Escolher Botão UI", "", Enum.KeyCode.Tab, function()
+
+
+Key:NewKeybind("Escolher Botão UI", "", Enum.KeyCode.Tab, function()
 	Library:ToggleUI()
 end)
+
+Key:NewKeybind("Menu Keybind", "", Enum.KeyCode.RightShift, function()
+    local args = {
+        [1] = "Grab",
+        [2] = {}}
+     game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
+     
+     wait(0.5)
+     
+     local CFrame = CFrame.new(120091, 213.45082092285, 898.25079345703)
+     
+     local motion
+     
+     for i, v in pairs(getloadedmodules()) do
+        if v.Name == "MotionTracker" then
+            motion = v
+        end
+     end
+     
+     for i2, v2 in pairs(debug.getupvalues(require(motion))) do
+        if type(v2) == "function" then
+            if getinfo(v2).name == "TeleportTo" then
+                setupvalue(v2, 3, CFrame)
+            end
+        end
+     end
+end)
+
+
 
 
 
@@ -142,7 +599,7 @@ end
 
 function drink()
     spawn(function()
-            while wait() do
+            while wait(20) do
                 if not getgenv().autoDrink then break end
                 game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
                         
@@ -156,10 +613,39 @@ function stamina()
                 if not getgenv().autoStamina then break end
                 for i,v in pairs(game:GetService("Players").LocalPlayer:GetChildren()) do
                     if v.Name == "Stamina" then
+                        if v.Value <= 45 then
                     v.Value = 100
+                        end
                  end
                  end
             end
     end)
 end
 
+function pack()
+    spawn(function()
+            while wait(1) do
+                if not getgenv().autoPack then break end
+                    local args = {
+                        [1] = "Join",
+                        [2] = "Parado_xo"}
+                    game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
+                    local args = {
+                        [1] = "Join",
+                        [2] = "Unkso"}
+                    game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
+            end
+    end)
+end
+
+function grab()
+    spawn(function()
+                while wait(0.5) do
+                if not getgenv().antiGrab then break end
+                    local args = {
+                        [1] = "Grab",
+                        [2] = {}}
+                    game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
+                end
+    end)
+end
