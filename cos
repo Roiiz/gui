@@ -84,7 +84,7 @@ Player:NewToggle("Anti Clima", "", function(state)
     end
 end)
 
-Player:NewToggle("Anti Grab (Não testei)", "", function(state)
+Player:NewToggle("Anti Grab", "", function(state)
     getgenv().antiGrab = state
                 if state then
                 grab()
@@ -608,7 +608,7 @@ end
 
 function drink()
     spawn(function()
-            while wait(20) do
+            while wait(10) do
                 if not getgenv().autoDrink then break end
                 game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
                         
