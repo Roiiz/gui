@@ -77,7 +77,7 @@ Player:NewToggle("Stamina", "", function(state)
     end
 end)
 
-Key:NewLabel("Anti")
+Player:NewLabel("Anti")
 
 Player:NewToggle("Anti Clima", "", function(state)
     getgenv().autoShelter = state
@@ -93,7 +93,7 @@ Player:NewToggle("Anti Grab", "", function(state)
     end
 end)
 
-Key:NewLabel("Players/Pack")
+Player:NewLabel("Players/Pack")
 
 Player:NewButton("Criar Pack", "", function()
 
