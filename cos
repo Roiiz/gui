@@ -138,8 +138,7 @@ Player:NewToggle("Ativar Tudo", "Ativa Todos os Toggles", function(state)
                 if state then
                 shelter()
                 stamina()
-                drink()
-                pack()
+                drink()              
                 grab()
     end
 end)
@@ -594,6 +593,16 @@ Key:NewKeybind("Menu Keybind", "", Enum.KeyCode.N, function()
      end
 end)
 
+Key:NewButton("Traduzir Chat", "", function()
+    loadstring(game:HttpGetAsync('https://i.qts.life/r/ChatInlineTranslator.lua', true))()
+
+end)
+
+Key:NewButton("Mudar Server", "", function()
+    loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
+
+end)
+
 
 
 
@@ -629,22 +638,6 @@ function stamina()
                         end
                  end
                  end
-            end
-    end)
-end
-
-function pack()
-    spawn(function()
-            while wait(1) do
-                if not getgenv().autoPack then break end
-                    local args = {
-                        [1] = "Join",
-                        [2] = "Parado_xo"}
-                    game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
-                    local args = {
-                        [1] = "Join",
-                        [2] = "Unkso"}
-                    game:GetService("Players").LocalPlayer.RemoteEvent:FireServer(unpack(args))
             end
     end)
 end
