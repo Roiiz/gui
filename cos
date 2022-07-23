@@ -567,7 +567,7 @@ Key:NewKeybind("Escolher Botão UI", "", Enum.KeyCode.Tab, function()
 	Library:ToggleUI()
 end)
 
-Key:NewKeybind("Menu Keybind", "", Enum.KeyCode.RightShift, function()
+Key:NewKeybind("Menu Keybind", "", Enum.KeyCode.N, function()
     local args = {
         [1] = "Grab",
         [2] = {}}
